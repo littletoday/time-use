@@ -1,1 +1,2 @@
 # time-use
+npm start
