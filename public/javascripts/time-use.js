@@ -11,23 +11,74 @@ var sched_objs = [],
 	curr_minute = 0;
 
 var act_codes = [
-	{"index": "0", "short": "Sleeping", "desc": "Sleeping"},
-	{"index": "1", "short": "Personal Care", "desc": "Personal Care"},
-	{"index": "2", "short": "Eating & Drinking", "desc": "Eating and Drinking"},
-	{"index": "3", "short": "Education", "desc": "Education"},
-	{"index": "4", "short": "Work", "desc": "Work and Work-Related Activities"},
-	{"index": "5", "short": "Housework", "desc": "Household Activities"},
-	{"index": "6", "short": "Household Care", "desc": "Caring for and Helping Household Members"},
-	{"index": "7", "short": "Non-Household Care", "desc": "Caring for and Helping Non-Household Members"},
-	{"index": "8", "short": "Shopping", "desc": "Consumer Purchases"},
-	{"index": "9", "short": "Pro. Care Services", "desc": "Professional and Personal Care Services"},
-	{"index": "10", "short": "Leisure", "desc": "Socializing, Relaxing, and Leisure"},
-	{"index": "11", "short": "Sports", "desc": "Sports, Exercise, and Recreation"},
-	{"index": "12", "short": "Religion", "desc": "Religious and Spiritual Activities"},
-	{"index": "13", "short": "Volunteering", "desc": "Volunteer Activities"},
-	{"index": "14", "short": "Phone Calls", "desc": "Telephone Calls"},
-	{"index": "15", "short": "Misc.", "desc": "Other"},
-	{"index": "16", "short": "Traveling", "desc": "Traveling"},
+	{"index": "0", "short": "Books", "desc": "Sleeping", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51R-Xi5wS9L._AC_SS150_.jpg", 
+		"url":"https://www.amazon.cn/dp/B01MSACOEI/"
+	},
+	{"index": "1", "short": "Digital Books", "desc": "Personal Care", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41U96%2By2b0L._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/dp/B01JHWD4OK/"
+	},
+	{"index": "2", "short": "Apparel", "desc": "Eating and Drinking", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/61epLKUx8KL._SY134_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "3", "short": "Grocery", "desc": "Education", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/518hsPFO5wL._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "4", "short": "Health & Personal Care", "desc": "Work and Work-Related Activities", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51TW0YKk4LL._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "5", "short": "Shoes", "desc": "Household Activities", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/61wOlz1VZGL._AC_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "6", "short": "Home", "desc": "Caring for and Helping Household Members", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51c8PRklXbL._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "7", "short": "Baby", "desc": "Caring for and Helping Non-Household Members",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51tMK+pBBmL._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "8", "short": "Beauty", "desc": "Consumer Purchases",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51bFnQnhDvL._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "9", "short": "Kitchen", "desc": "Professional and Personal Care Services",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41HAZY2+H-L._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "10", "short": "Toys", "desc": "Socializing, Relaxing, and Leisure",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41PShYSsjwL._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "11", "short": "PC", "desc": "Sports, Exercise, and Recreation",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/31bx4DAyRaL._AA160_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "12", "short": "Gift Card", "desc": "Religious and Spiritual Activities", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51A6FsJYUvL._AC_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "13", "short": "Office Products", "desc": "Volunteer Activities", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/G/28/Baby/2013/campaign/baby_20170309_500500_new._AA135_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "14", "short": "Sports", "desc": "Telephone Calls",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41E8NiKuFJL._AC_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "15", "short": "Wireless", "desc": "Other",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41KNKN8HGGL._AC_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	},
+	{"index": "16", "short": "Home Improvement", "desc": "Traveling",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51sWMmo0LlL._AC_.jpg",
+		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	}
 ];
 
 
@@ -110,6 +161,38 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		// .call(force.drag);
 	
 	// Activity labels
+	var image = svg.selectAll("a") 
+		.data(act_codes)
+		.enter().append("a")
+		.attr("xlink:href", function(d){
+			return d.url;
+		})
+		.append("image")
+		.attr("xlink:href", function(d){
+			return d.src;
+		})
+		.attr("height", 100)
+		.attr("width", 100)
+		.attr("x", function(d, i) {
+			if (d.desc == center_act) {
+				return center_pt.x;
+			} else {
+				var theta = 2 * Math.PI / (act_codes.length-1);
+				return 340 * Math.cos(i * theta)+380;
+			}
+			
+		})
+		.attr("y", function(d, i) {
+			if (d.desc == center_act) {
+				return center_pt.y;
+			} else {
+				var theta = 2 * Math.PI / (act_codes.length-1);
+				return 340 * Math.sin(i * theta)+365;
+			}
+			
+		});
+
+
 	var label = svg.selectAll("text")
 		.data(act_codes)
 	  	.enter().append("text")
@@ -138,7 +221,8 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		// .attr("dy", "1.3em")
 		.attr("text-anchor", "middle")
 		.text(function(d) {
-			return d.short;
+			//return d.short;
+			return "";
 		});
 	label.append("tspan")
 		.attr("dy", "1.3em")
@@ -148,6 +232,7 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		.text(function(d) {
 			return act_counts[d.index] + "%";
 		});
+	
 		
 
 	// Update nodes based on activity and duration
@@ -279,7 +364,7 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 function color(activity) {
 	
 	var colorByActivity = {
-		"0": "#e0d400",
+		"0": "#FFFFFF",
 		"1": "#1c8af9",
 		"2": "#51BC05",
 		"3": "#FF7F00",
@@ -302,17 +387,17 @@ function color(activity) {
 	
 }
 
-
-
 // Output readable percent based on count.
 function readablePercent(n) {
 	
-	var pct = 100 * n / 1000;
+	/*var pct = 100 * n / 1000;
 	if (pct < 1 && pct > 0) {
 		pct = "<1%";
 	} else {
 		pct = Math.round(pct) + "%";
-	}
+	}*/
+
+	pct = n;
 	
 	return pct;
 }
@@ -339,5 +424,5 @@ function minutesToTime(m) {
 		mm = "0" + mm;
 	}
 	
-	return hh + ":" + mm + ampm
+	return hh + ":" + mm + ampm;
 }
