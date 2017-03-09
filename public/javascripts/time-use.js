@@ -33,23 +33,6 @@ var act_codes = [
 
 var speeds = { "slow": 1000, "medium": 200, "fast": 50 };
 
-
-var time_notes = [
-	{ "start_minute": 1, "stop_minute": 40, "note": "The simulation kicks in, based on data from the American Time Use Survey." },
-	{ "start_minute": 70, "stop_minute": 120, "note": "Most people are still sleeping this early in the morning, but some are already at work or preparing for the day." },
-	{ "start_minute": 180, "stop_minute": 300, "note": "It's wake up time for most. Time to start the day with morning rituals, breakfast and a wonderful commute." },
-	{ "start_minute": 360, "stop_minute": 440, "note": "The day is in full swing with work or housework. Stores and services are open so people can run errands, and they take various forms of transportation to get there." },
-	{ "start_minute": 480, "stop_minute": 540, "note": "Lunch hour. Many go eat, but there's still activity throughout. You see a small shift at the end of the hour." },
-	{ "start_minute": 660, "stop_minute": 720, "note": "Coffee break? Again, at the top of the hour, you see a shift in activity." },
-	{ "start_minute": 780, "stop_minute": 830, "note": "With the work day done, it's time to commute home and fix dinner or go out for a while." },
-	{ "start_minute": 870, "stop_minute": 890, "note": "Dinner time!" },
-	{ "start_minute": 930, "stop_minute": 1010, "note": "Dinner's done. Time for relaxation, TV, games, hobbies and socializing." },
-	{ "start_minute": 1080, "stop_minute": 1140, "note": "Winding down for the day. From leisure time, people shift to personal care and sleep." },
-	{ "start_minute": 1210, "stop_minute": 1300, "note": "Goodnight. More than 80% of people are asleep and it peaks at 96% around 3:00am." },
-];
-var notes_index = 0;
-
-
 // Activity to put in center of circle arrangement
 var center_act = "Traveling",
 	center_pt = { "x": 380, "y": 365 };
@@ -212,39 +195,9 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		var true_minute = curr_minute % 1440;
 		d3.select("#current_time").text(minutesToTime(true_minute));
 		
-		// Update notes
-		// var true_minute = curr_minute % 1440;
-		if (true_minute == time_notes[notes_index].start_minute) {
-			d3.select("#note")
-				.style("top", "0px")
-			  .transition()
-				.duration(600)
-				.style("top", "20px")
-				.style("color", "#000000")
-				.text(time_notes[notes_index].note);
-		} 
-		
-		// Make note disappear at the end.
-		else if (true_minute == time_notes[notes_index].stop_minute) {
-			
-			d3.select("#note").transition()
-				.duration(1000)
-				.style("top", "300px")
-				.style("color", "#ffffff");
-				
-			notes_index += 1;
-			if (notes_index == time_notes.length) {
-				notes_index = 0;
-			}
-		}
-		
-		
 		setTimeout(timer, speeds[USER_SPEED]);
 	}
 	setTimeout(timer, speeds[USER_SPEED]);
-	
-	
-	
 		
 	function tick(e) {
 	  var k = 0.04 * e.alpha;
