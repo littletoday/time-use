@@ -1,8 +1,8 @@
 
 var USER_SPEED = "slow";
 
-var width = 780,
-    height = 800,
+var width = 1080,
+    height = 1000,
 	padding = 1,
 	maxRadius = 3;
 	// color = d3.scale.category10();
@@ -11,71 +11,73 @@ var sched_objs = [],
 	curr_minute = 0;
 
 var act_codes = [
-	{"index": "0", "short": "Books", "desc": "Sleeping", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51R-Xi5wS9L._AC_SS150_.jpg", 
-		"url":"https://www.amazon.cn/dp/B01MSACOEI/"
+	{"index": "-1", "short": "Books", "desc": "Books", 
+		"src":"",
+		"url":""
+		//"src":"https://images-cn.ssl-images-amazon.com/images/I/51R-Xi5wS9L._AC_SS150_.jpg", 
+		//"url":"https://www.amazon.cn/dp/B01MSACOEI/"
 	},
-	{"index": "1", "short": "Digital Books", "desc": "Personal Care", 
+	{"index": "193", "short": "Digital Books", "desc": "Personal Care", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41U96%2By2b0L._AC_SR300,300_.jpg",
 		"url":"https://www.amazon.cn/dp/B01JHWD4OK/"
 	},
-	{"index": "2", "short": "Apparel", "desc": "Eating and Drinking", 
+	{"index": "325", "short": "Apparel", "desc": "Eating and Drinking", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/61epLKUx8KL._SY134_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "3", "short": "Grocery", "desc": "Education", 
+	{"index": "121", "short": "Grocery", "desc": "Education", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/518hsPFO5wL._AC_SR300,300_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "4", "short": "Health & Personal Care", "desc": "Work and Work-Related Activities", 
+	{"index": "309", "short": "Health & Personal Care", "desc": "Work and Work-Related Activities", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51TW0YKk4LL._AC_SR300,300_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "5", "short": "Shoes", "desc": "Household Activities", 
+	{"index": "201", "short": "Shoes", "desc": "Household Activities", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/61wOlz1VZGL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "6", "short": "Home", "desc": "Caring for and Helping Household Members", 
+	{"index": "75", "short": "Home", "desc": "Caring for and Helping Household Members", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51c8PRklXbL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "7", "short": "Baby", "desc": "Caring for and Helping Non-Household Members",
+	{"index": "194", "short": "Baby", "desc": "Caring for and Helping Non-Household Members",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51tMK+pBBmL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "8", "short": "Beauty", "desc": "Consumer Purchases",
+	{"index": "79", "short": "Beauty", "desc": "Consumer Purchases",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51bFnQnhDvL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "9", "short": "Kitchen", "desc": "Professional and Personal Care Services",
+	{"index": "21", "short": "Kitchen", "desc": "Professional and Personal Care Services",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41HAZY2+H-L._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "10", "short": "Toys", "desc": "Socializing, Relaxing, and Leisure",
+	{"index": "147", "short": "Toys", "desc": "Socializing, Relaxing, and Leisure",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41PShYSsjwL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "11", "short": "PC", "desc": "Sports, Exercise, and Recreation",
+	{"index": "228", "short": "PC", "desc": "Sports, Exercise, and Recreation",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/31bx4DAyRaL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "12", "short": "Gift Card", "desc": "Religious and Spiritual Activities", 
+	{"index": "229", "short": "Gift Card", "desc": "Religious and Spiritual Activities", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51A6FsJYUvL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "13", "short": "Office Products", "desc": "Volunteer Activities", 
+	{"index": "200", "short": "Office Products", "desc": "Volunteer Activities", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/G/28/Baby/2013/campaign/baby_20170309_500500_new._AA135_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "14", "short": "Sports", "desc": "Telephone Calls",
+	{"index": "107", "short": "Sports", "desc": "Telephone Calls",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41E8NiKuFJL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "15", "short": "Wireless", "desc": "Other",
+	{"index": "60", "short": "Wireless", "desc": "Other",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41KNKN8HGGL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "16", "short": "Home Improvement", "desc": "Traveling",
+	{"index": "263", "short": "Home Improvement", "desc": "Traveling",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51sWMmo0LlL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	}
@@ -85,18 +87,18 @@ var act_codes = [
 var speeds = { "slow": 1000, "medium": 200, "fast": 50 };
 
 // Activity to put in center of circle arrangement
-var center_act = "Traveling",
-	center_pt = { "x": 380, "y": 365 };
+var center_act = "Books",
+	center_pt = { "x": 480, "y": 465 };
 
-
+var smaller_radius = 280;
 // Coordinates for activities
 var foci = {};
 act_codes.forEach(function(code, i) {
 	if (code.desc == center_act) {
-		foci[code.index] = center_pt;
+		foci[code.index] = {x:center_pt.x + 50, y:center_pt.y + 50};
 	} else {
 		var theta = 2 * Math.PI / (act_codes.length-1);
-		foci[code.index] = {x: 250 * Math.cos(i * theta)+380, y: 250 * Math.sin(i * theta)+365 };
+		foci[code.index] = {x: smaller_radius * Math.cos(i * theta)+center_pt.x + 50, y: smaller_radius * Math.sin(i * theta)+center_pt.y + 50 };
 	}
 });
 
@@ -108,7 +110,7 @@ var svg = d3.select("#chart").append("svg")
 
 
 // Load data and let's do it.
-d3.tsv("data/days-simulated-v2.tsv", function(error, data) {	
+d3.tsv("data/dataNoBooksOut.tsv", function(error, data) {	
 	
 	data.forEach(function(d) {
 		var day_array = d.day.split(",");
@@ -123,12 +125,12 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 	});
 	
 	// Used for percentages by minute
-	var act_counts = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0 };
+	//var act_counts = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0 };
 	
 	// A node for each person's schedule
 	var nodes = sched_objs.map(function(o,i) {
 		var act = o[0].act;
-		act_counts[act] += 1;
+		//act_counts[act] += 1;
 		var init_x = foci[act].x + Math.random();
 		var init_y = foci[act].y + Math.random();
 		return {
@@ -160,6 +162,7 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		.style("fill", function(d) { return d.color; });
 		// .call(force.drag);
 	
+	var larger_radius = 380;
 	// Activity labels
 	var image = svg.selectAll("a") 
 		.data(act_codes)
@@ -178,7 +181,7 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 				return center_pt.x;
 			} else {
 				var theta = 2 * Math.PI / (act_codes.length-1);
-				return 340 * Math.cos(i * theta)+380;
+				return larger_radius * Math.cos(i * theta)+center_pt.x;
 			}
 			
 		})
@@ -187,12 +190,12 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 				return center_pt.y;
 			} else {
 				var theta = 2 * Math.PI / (act_codes.length-1);
-				return 340 * Math.sin(i * theta)+365;
+				return larger_radius * Math.sin(i * theta)+center_pt.y;
 			}
 			
 		});
 
-
+/*
 	var label = svg.selectAll("text")
 		.data(act_codes)
 	  	.enter().append("text")
@@ -216,6 +219,7 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 			
 		});
 		
+		
 	label.append("tspan")
 		.attr("x", function() { return d3.select(this.parentNode).attr("x"); })
 		// .attr("dy", "1.3em")
@@ -230,11 +234,12 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		.attr("text-anchor", "middle")
 		.attr("class", "actpct")
 		.text(function(d) {
-			return act_counts[d.index] + "%";
+			//return act_counts[d.index] + "%";
+			return "";
 		});
+*/
 	
-		
-
+	
 	// Update nodes based on activity and duration
 	function timer() {
 		d3.range(nodes.length).map(function(i) {
@@ -250,13 +255,13 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 				}
 			
 				// Subtract from current activity count
-				act_counts[curr_node.act] -= 1;
+				//act_counts[curr_node.act] -= 1;
 			
 				// Move on to next activity
 				curr_node.act = curr_node.sched[ curr_moves ].act;
 			
 				// Add to new activity count
-				act_counts[curr_node.act] += 1;
+				//act_counts[curr_node.act] += 1;
 			
 				curr_node.moves = curr_moves;
 				curr_node.cx = foci[curr_node.act].x;
@@ -271,14 +276,15 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 		curr_minute += 1;
 
 		// Update percentages
-		label.selectAll("tspan.actpct")
+		/*label.selectAll("tspan.actpct")
 			.text(function(d) {
 				return readablePercent(act_counts[d.index]);
-			});
+			});*/
 	
 		// Update time
 		var true_minute = curr_minute % 1440;
 		d3.select("#current_time").text(minutesToTime(true_minute));
+		d3.select("#current_day").text(minutesToDate(curr_minute));
 		
 		setTimeout(timer, speeds[USER_SPEED]);
 	}
@@ -364,23 +370,23 @@ d3.tsv("data/days-simulated-v2.tsv", function(error, data) {
 function color(activity) {
 	
 	var colorByActivity = {
-		"0": "#FFFFFF",
-		"1": "#1c8af9",
-		"2": "#51BC05",
-		"3": "#FF7F00",
-		"4": "#DB32A4",
-		"5": "#00CDF8",
-		"6": "#E63B60",
-		"7": "#8E5649",
-		"8": "#68c99e",
-		"9": "#a477c8",
-		"10": "#5C76EC",
-		"11": "#E773C3",
-		"12": "#799fd2",
-		"13": "#038a6c",
-		"14": "#cc87fa",
-		"15": "#ee8e76",
-		"16": "#bbbbbb",
+		"-1": "#FFFFFF",
+		"193": "#1c8af9",
+		"325": "#51BC05",
+		"121": "#FF7F00",
+		"309": "#DB32A4",
+		"201": "#00CDF8",
+		"75": "#E63B60",
+		"194": "#8E5649",
+		"79": "#68c99e",
+		"21": "#a477c8",
+		"147": "#5C76EC",
+		"228": "#E773C3",
+		"229": "#799fd2",
+		"200": "#038a6c",
+		"107": "#cc87fa",
+		"60": "#ee8e76",
+		"263": "#bbbbbb",
 	}
 	
 	return colorByActivity[activity];
@@ -399,13 +405,14 @@ function readablePercent(n) {
 
 	pct = n;
 	
-	return pct;
+	//return pct;
+	return "";
 }
 
 
-// Minutes to time of day. Data is minutes from 4am.
+// Minutes to time of day. Data is minutes from 12am.
 function minutesToTime(m) {
-	var minutes = (m + 4*60) % 1440;
+	var minutes = (m + 0*60) % 1440;
 	var hh = Math.floor(minutes / 60);
 	var ampm;
 	if (hh > 12) {
@@ -426,3 +433,12 @@ function minutesToTime(m) {
 	
 	return hh + ":" + mm + ampm;
 }
+
+function minutesToDate(m) {
+	var init_date = new Date('2016-11-26 00:00:00');
+	var curr_date = new Date(init_date);
+	curr_date.setMinutes(init_date.getMinutes() + m);
+	return curr_date.toDateString();
+}
+
+
