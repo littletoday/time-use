@@ -30,7 +30,7 @@ var act_codes = [
 		"url":"https://www.amazon.cn/%E4%B8%AA%E6%8A%A4%E5%81%A5%E5%BA%B7/b/ref=sa_menu_top_health_l1?ie=UTF8&node=852803051"
 	},
 	{"index": "309", "short": "Shoes", "desc": "Shoes", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41sxiPVQFBL._SL260_SX200_CR0,0,200,260_.jpg",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41t67%2BWL-pL._SL150_.jpg",
 		"url":"https://www.amazon.cn/b?ie=UTF8&node=2154234051"
 	},
 	{"index": "201", "short": "Home", "desc": "Household goods", 
@@ -38,7 +38,7 @@ var act_codes = [
 		"url":"https://www.amazon.cn/%E5%AE%B6%E5%B1%85%E7%94%A8%E5%93%81/b/ref=sa_menu_top_home_l1?ie=UTF8&node=831780051"
 	},
 	{"index": "75", "short": "Baby", "desc": "Caring for babys", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/412sk7APb4L._AC_SR300,300_.jpg",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/417rHTNjnGL._AC_SR300,300_.jpg",
 		"url":"https://www.amazon.cn/b/ref=sa_menu_top_baby_l1?ie=UTF8&node=42692071"
 	},
 	{"index": "194", "short": "Beauty", "desc": "Caring for beauty",
@@ -51,35 +51,35 @@ var act_codes = [
 	},
 	{"index": "21", "short": "Toys", "desc": "Toys",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51muIiW8ZQL._AA160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/%E6%B8%B8%E6%88%8F%E8%BD%AF%E4%BB%B6/b/ref=sa_menu_top_music_l1_897415051?ie=UTF8&node=897415051"
 	},
 	{"index": "147", "short": "PC", "desc": "PC",
 		 "src":"https://images-na.ssl-images-amazon.com/images/I/51CvjRu6c8L._AC_US160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/b/ref=sa_menu_top_accessories_l1?ie=UTF8&node=1819570071"
 	},
 	{"index": "228", "short": "Gift Card", "desc": "Gift Card",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/31l2damWwuL._AA160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/gift-cards/b?ie=UTF8&node=311868071"
 	},
 	{"index": "229", "short": "Office Products", "desc": "Office Products", 
 		 "src":"https://images-na.ssl-images-amazon.com/images/I/41lZydNAHuL._AC_US160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/%E5%8A%9E%E5%85%AC%E7%94%A8%E5%93%81/b/ref=sa_menu_top_office_l1?ie=UTF8&node=2127221051"
 	},
 	{"index": "200", "short": "Sports", "desc": "Sports", 
 		 "src":"https://images-na.ssl-images-amazon.com/images/I/51fsD+L-h5L._AC_US160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/b/ref=sa_menu_top_sports_l1?ie=UTF8&node=836312051"
 	},
 	{"index": "107", "short": "Wireless", "desc": "Telephone Calls",
 		"src":"https://images-na.ssl-images-amazon.com/images/I/31mKAuDAywL._AC_US160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/%E6%89%8B%E6%9C%BA-%E9%80%9A%E8%AE%AF/b/ref=sa_menu_top_mobile_l1?ie=UTF8&node=664978051"
 	},
 	{"index": "60", "short": "Home Improvement", "desc": "Home goods",
 		"src":"https://images-na.ssl-images-amazon.com/images/I/51W2S-U20DL._AC_US160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/%E5%AE%B6%E5%B1%85%E7%94%A8%E5%93%81/b/ref=sa_menu_top_home_l1?ie=UTF8&node=831780051"
 	},
 	{"index": "263", "short": "Automotive", "desc": "Traveling",
 		 "src":"https://images-na.ssl-images-amazon.com/images/I/51+s7QuOU2L._AC_US160_.png",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"url":"https://www.amazon.cn/%E6%B1%BD%E8%BD%A6%E7%94%A8%E5%93%81/b/ref=sa_menu_top_auto_l1?ie=UTF8&node=1947899051"
 	}
 ];
 
@@ -170,6 +170,7 @@ d3.tsv("data/dataNoBooksOutCut.tsv", function(error, data) {
 		.attr("xlink:href", function(d){
 			return d.url;
 		})
+		.attr("target","_blank")
 		.append("image")
 		.attr("xlink:href", function(d){
 			return d.src;
@@ -194,6 +195,28 @@ d3.tsv("data/dataNoBooksOutCut.tsv", function(error, data) {
 			}
 			
 		});
+
+	image.append("title")
+		.text( function(d){
+			return d.short;
+		});
+
+	/*var tooltip = image.append("div")
+		.attr("class", "tooltip")
+    	.style("opacity", 0);
+
+    var tooltip = d3.select("body").append("div")
+	.attr("class", "tooltip")
+	.style("opacity", 0);
+
+    image.on("mousemove", function(d) {
+    		tooltip.html(d.short)
+        		//.style('top', d3.event.pageY - 10 + 'px')
+        		//.style('left', d3.event.pageX + 10 + 'px')
+        		.style("opacity", 0.9);
+		}).on("mouseout", function() {
+    		tooltip.style("opacity", 0)
+		});*/
 
 /*
 	var label = svg.selectAll("text")
@@ -435,7 +458,7 @@ function minutesToTime(m) {
 }
 
 function minutesToDate(m) {
-	var init_date = new Date('2016-11-26 00:00:00');
+	var init_date = new Date('2016-11-25 00:00:00');
 	var curr_date = new Date(init_date);
 	curr_date.setMinutes(init_date.getMinutes() + m);
 	return curr_date.toDateString();
