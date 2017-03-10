@@ -42,43 +42,43 @@ var act_codes = [
 		"url":"https://www.amazon.cn/b/ref=sa_menu_top_baby_l1?ie=UTF8&node=42692071"
 	},
 	{"index": "194", "short": "Beauty", "desc": "Caring for beauty",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51tMK+pBBmL._AA160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"src":"https://images-cn.ssl-images-amazon.com/images/G/28/2015/xuefyuan/beauty_500500_meifa._CB521998896_AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/b/ref=sa_menu_top_beauty_l1?ie=UTF8&node=746776051"
 	},
 	{"index": "79", "short": "Kitchen", "desc": "Consumer Purchases",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51bFnQnhDvL._AA160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/31EMIgb3eLL._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/b/ref=sa_menu_kitchen_l1?ie=UTF8&node=813108051"
 	},
 	{"index": "21", "short": "Toys", "desc": "Toys",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41HAZY2+H-L._AA160_.jpg",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51muIiW8ZQL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "147", "short": "PC", "desc": "PC",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41PShYSsjwL._AA160_.jpg",
+		 "src":"https://images-na.ssl-images-amazon.com/images/I/51CvjRu6c8L._AC_US160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "228", "short": "Gift Card", "desc": "Gift Card",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/31bx4DAyRaL._AA160_.jpg",
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/31l2damWwuL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "229", "short": "Office Products", "desc": "Office Products", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51A6FsJYUvL._AC_.jpg",
+		 "src":"https://images-na.ssl-images-amazon.com/images/I/41lZydNAHuL._AC_US160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "200", "short": "Sports", "desc": "Sports", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/G/28/Baby/2013/campaign/baby_20170309_500500_new._AA135_.jpg",
+		 "src":"https://images-na.ssl-images-amazon.com/images/I/51fsD+L-h5L._AC_US160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "107", "short": "Wireless", "desc": "Telephone Calls",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41E8NiKuFJL._AC_.jpg",
+		"src":"https://images-na.ssl-images-amazon.com/images/I/31mKAuDAywL._AC_US160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "60", "short": "Home Improvement", "desc": "Home goods",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41KNKN8HGGL._AC_.jpg",
+		"src":"https://images-na.ssl-images-amazon.com/images/I/51W2S-U20DL._AC_US160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
 	{"index": "263", "short": "Automotive", "desc": "Traveling",
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51sWMmo0LlL._AC_.jpg",
+		 "src":"https://images-na.ssl-images-amazon.com/images/I/51+s7QuOU2L._AC_US160_.png",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	}
 ];
@@ -110,7 +110,7 @@ var svg = d3.select("#chart").append("svg")
 
 
 // Load data and let's do it.
-d3.tsv("data/dataNoBooksOut.tsv", function(error, data) {	
+d3.tsv("data/dataNoBooksOutCut.tsv", function(error, data) {	
 	
 	data.forEach(function(d) {
 		var day_array = d.day.split(",");
