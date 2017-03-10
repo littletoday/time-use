@@ -1,5 +1,5 @@
 
-var USER_SPEED = "slow";
+var USER_SPEED = "fast";
 
 var width = 1080,
     height = 1000,
@@ -11,73 +11,73 @@ var sched_objs = [],
 	curr_minute = 0;
 
 var act_codes = [
-	{"index": "-1", "short": "Books", "desc": "Books", 
+	{"index": "-1", "short": "Idle", "desc": "Idle", 
 		"src":"",
 		"url":""
 		//"src":"https://images-cn.ssl-images-amazon.com/images/I/51R-Xi5wS9L._AC_SS150_.jpg", 
 		//"url":"https://www.amazon.cn/dp/B01MSACOEI/"
 	},
-	{"index": "193", "short": "Digital Books", "desc": "Personal Care", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/41U96%2By2b0L._AC_SR300,300_.jpg",
-		"url":"https://www.amazon.cn/dp/B01JHWD4OK/"
+	{"index": "193", "short": "Apparel", "desc": "Apparel", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41gwMQg%2BOTL._SL150_.jpg",
+		"url":"https://www.amazon.cn/%E5%A5%B3%E8%A3%85/b/ref=sv_sa_1?ie=UTF8&node=2152154051"
 	},
-	{"index": "325", "short": "Apparel", "desc": "Eating and Drinking", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/61epLKUx8KL._SY134_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	{"index": "325", "short": "Grocery", "desc": "Eating and Drinking", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/517zMLv3ltL._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/%E9%A3%9F%E5%93%81/b/ref=sa_menu_top_grocery_l1?ie=UTF8&node=2127215051"
 	},
-	{"index": "121", "short": "Grocery", "desc": "Education", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/518hsPFO5wL._AC_SR300,300_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	{"index": "121", "short": "Health & Personal Care", "desc": "Health", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/51ruSSf3TOL._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/%E4%B8%AA%E6%8A%A4%E5%81%A5%E5%BA%B7/b/ref=sa_menu_top_health_l1?ie=UTF8&node=852803051"
 	},
-	{"index": "309", "short": "Health & Personal Care", "desc": "Work and Work-Related Activities", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51TW0YKk4LL._AC_SR300,300_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	{"index": "309", "short": "Shoes", "desc": "Shoes", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41sxiPVQFBL._SL260_SX200_CR0,0,200,260_.jpg",
+		"url":"https://www.amazon.cn/b?ie=UTF8&node=2154234051"
 	},
-	{"index": "201", "short": "Shoes", "desc": "Household Activities", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/61wOlz1VZGL._AC_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	{"index": "201", "short": "Home", "desc": "Household goods", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/41CRf-hiP1L._SX165_.jpg",
+		"url":"https://www.amazon.cn/%E5%AE%B6%E5%B1%85%E7%94%A8%E5%93%81/b/ref=sa_menu_top_home_l1?ie=UTF8&node=831780051"
 	},
-	{"index": "75", "short": "Home", "desc": "Caring for and Helping Household Members", 
-		"src":"https://images-cn.ssl-images-amazon.com/images/I/51c8PRklXbL._AA160_.jpg",
-		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
+	{"index": "75", "short": "Baby", "desc": "Caring for babys", 
+		"src":"https://images-cn.ssl-images-amazon.com/images/I/412sk7APb4L._AC_SR300,300_.jpg",
+		"url":"https://www.amazon.cn/b/ref=sa_menu_top_baby_l1?ie=UTF8&node=42692071"
 	},
-	{"index": "194", "short": "Baby", "desc": "Caring for and Helping Non-Household Members",
+	{"index": "194", "short": "Beauty", "desc": "Caring for beauty",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51tMK+pBBmL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "79", "short": "Beauty", "desc": "Consumer Purchases",
+	{"index": "79", "short": "Kitchen", "desc": "Consumer Purchases",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51bFnQnhDvL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "21", "short": "Kitchen", "desc": "Professional and Personal Care Services",
+	{"index": "21", "short": "Toys", "desc": "Toys",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41HAZY2+H-L._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "147", "short": "Toys", "desc": "Socializing, Relaxing, and Leisure",
+	{"index": "147", "short": "PC", "desc": "PC",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41PShYSsjwL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "228", "short": "PC", "desc": "Sports, Exercise, and Recreation",
+	{"index": "228", "short": "Gift Card", "desc": "Gift Card",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/31bx4DAyRaL._AA160_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "229", "short": "Gift Card", "desc": "Religious and Spiritual Activities", 
+	{"index": "229", "short": "Office Products", "desc": "Office Products", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51A6FsJYUvL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "200", "short": "Office Products", "desc": "Volunteer Activities", 
+	{"index": "200", "short": "Sports", "desc": "Sports", 
 		"src":"https://images-cn.ssl-images-amazon.com/images/G/28/Baby/2013/campaign/baby_20170309_500500_new._AA135_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "107", "short": "Sports", "desc": "Telephone Calls",
+	{"index": "107", "short": "Wireless", "desc": "Telephone Calls",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41E8NiKuFJL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "60", "short": "Wireless", "desc": "Other",
+	{"index": "60", "short": "Home Improvement", "desc": "Home goods",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/41KNKN8HGGL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	},
-	{"index": "263", "short": "Home Improvement", "desc": "Traveling",
+	{"index": "263", "short": "Automotive", "desc": "Traveling",
 		"src":"https://images-cn.ssl-images-amazon.com/images/I/51sWMmo0LlL._AC_.jpg",
 		"url":"https://www.amazon.cn/dp/B00FWJ8P9C"
 	}
@@ -87,7 +87,7 @@ var act_codes = [
 var speeds = { "slow": 1000, "medium": 200, "fast": 50 };
 
 // Activity to put in center of circle arrangement
-var center_act = "Books",
+var center_act = "Idle",
 	center_pt = { "x": 480, "y": 465 };
 
 var smaller_radius = 280;
